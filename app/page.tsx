@@ -1,13 +1,112 @@
-const colors = [["Primary 500","#F97316"],["Primary 400","#FB923C"],["Primary 300","#FDBA74"],["Primary 200","#FED7AA"],["Primary 100","#FFF7ED"],["Neutral 900","#0F172A"],["Neutral 700","#334155"],["Neutral 500","#64748B"],["Neutral 300","#CBD5E1"],["Neutral 200","#E2E8F0"],["Neutral 100","#F1F5F9"],["Neutral 50","#FAFAFC"],["White","#FFFFFF"]];
-const icons={search:"m21 21-4.3-4.3M10.8 18a7.2 7.2 0 1 1 0-14.4 7.2 7.2 0 0 1 0 14.4",bell:"M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4",file:"M6 3h9l3 3v15H6V3Zm9 0v4h3",user:"M20 21a8 8 0 0 0-16 0m12-11a4 4 0 1 1-8 0 4 4 0 0 1 8 0",arrow:"m9 18 6-6-6-6"};
-function Icon({name}:{name:keyof typeof icons}){return <svg className="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={icons[name]}/></svg>}
-function Section({n,title,children,className=""}:{n:string,title:string,children:React.ReactNode,className?:string}){return <section className={`panel ${className}`}><div className="section-label"><span>{n}</span><b>{title}</b></div>{children}</section>}
-function Logo(){return <div className="logo"><span className="mark">▼</span><strong>Vertex</strong></div>}
-const ButtonRow=({label,disabled=false}:{label:string,disabled?:boolean})=><div className="button-row"><small>{label}</small><button className="primary" disabled={disabled}>Get Started</button><button className="secondary" disabled={disabled}>Explore Courses</button><button className="tertiary" disabled={disabled}>View Lesson ↗</button><button className="text-button" disabled={disabled}>Watch Video ◉</button></div>;
-export default function Home(){return <main className="page-shell"><div className="top-grid"><div className="intro"><Logo/><h1>Design System</h1><p>A unified design language for Vertex learning platform. Clean, modern and focused on clarity, consistency and intuitive learning experiences.</p><small>VERSION 1.0　·　 MAY 2025</small></div><Section n="01" title="COLORS" className="colors"><h4>Primary</h4><div className="swatches">{colors.slice(0,5).map(([n,c])=><div key={n}><i style={{background:c}}/><small>{n}</small><em>{c}</em></div>)}</div><h4>Neutral</h4><div className="swatches">{colors.slice(5).map(([n,c])=><div key={n}><i style={{background:c}}/><small>{n}</small><em>{c}</em></div>)}</div></Section></div>
-<div className="two-col"><Section n="02" title="TYPOGRAPHY"><div className="type-pair"><span className="ag">Ag</span><div><strong>Playfair Display</strong><p>Elegant <b>·</b> Readable <b>·</b> Timeless</p></div></div><div className="type-pair"><span className="ag sans">Ag</span><div><strong>Inter</strong><p>Clean <b>·</b> Modern <b>·</b> Highly legible</p></div></div></Section><Section n="03" title="TYPE SCALE"><div className="scale-head"><span>Style</span><span>Font</span><span>Size / Line Height</span><span>Weight</span><span>Use</span></div>{[["Display 1","Playfair Display","48 / 56","Bold","Page titles"],["Display 2","Playfair Display","36 / 44","Bold","Section titles"],["Heading 1","Inter","28 / 36","Semi Bold","Card titles"],["Heading 2","Inter","22 / 30","Semi Bold","Sub section"],["Heading 3","Inter","18 / 26","Medium","Small titles"],["Body Large","Inter","16 / 24","Regular","Body copy"],["Body","Inter","14 / 20","Regular","Supporting text"],["Small","Inter","12 / 16","Regular","Captions, meta"]].map(r=><div className="scale-row" key={r[0]}>{r.map(x=><span key={x}>{x}</span>)}</div>)}</Section></div>
-<div className="two-col wide-left"><Section n="04" title="SPACING SYSTEM"><p>Base unit: 4px</p><div className="spacing">{[4,8,12,16,24,32,40,48,64].map(n=><div key={n}><i style={{width:n*.65,height:n*.65}}/><b>{n}</b><small>({n/16}rem)</small></div>)}</div></Section><Section n="05" title="RADIUS & SHADOWS"><p>Radius</p><div className="radius-row">{["4px","8px","12px","16px","24px","Full"].map((x,i)=><div key={x}><i className={`r-${i}`}/><small>{x}<br/>({["xs","sm","md","lg","xl","circle"][i]})</small></div>)}</div><p>Shadows</p><div className="shadow-row">{["Sm","Md","Lg","Xl"].map(x=><div key={x}><b>{x}</b><small>0 4px 12px -2px<br/>rgba(15,23,42,.08)</small></div>)}</div></Section></div>
-<div className="three-col"><Section n="06" title="ICONS"><p>Outline Style</p><div className="icon-row">{(["bell","search","file","user","arrow"] as const).map(x=><Icon key={x} name={x}/>)}</div><p>Filled Style</p><div className="icon-row filled">{(["bell","search","file","user","arrow"] as const).map(x=><Icon key={x} name={x}/>)}</div><small>Icon Specs<br/>•　24x24px grid<br/>•　2px stroke width (outline)<br/>•　Rounded line caps</small></Section><Section n="07" title="BUTTONS"><div className="button-grid"><div/><span>Primary</span><span>Secondary</span><span>Tertiary</span><span>Text</span><ButtonRow label="Default"/><ButtonRow label="Hover"/><ButtonRow label="Disabled" disabled/></div><p>Button Specs</p><small>•　Height: 44px (default)<br/>•　Padding: 0 16px (lg), 0 12px (md)<br/>•　Radius: 12px</small></Section><Section n="08" title="INPUTS"><p>Search / Text Input</p><label className="input"><Icon name="search"/><input aria-label="Search anything" placeholder="Search anything..."/><kbd>⌘ K</kbd></label><p>Select</p><select aria-label="Sort results"><option>Most Relevant</option></select><p>Field Specs</p><small>•　Height: 44px<br/>•　Radius: 12px<br/>•　Border: 1px solid #E2E8F0<br/>•　Focus: Border color #FB923C</small></Section></div>
-<div className="three-col compact"><Section n="09" title="BADGES / TAGS"><div className="badge-row"><div>Video<span className="badge video">VIDEO</span></div><div>Lesson<span className="badge lesson">LESSON</span></div><div>Popular<span className="badge popular">POPULAR</span></div></div></Section><Section n="10" title="STATUS / INDICATORS"><div className="status-row"><span className="orange">◯ In Progress</span><span className="green">✓ Completed</span><span>▶ Now Playing</span><span>♙ Locked</span></div></Section><Section n="11" title="PROGRESS BAR"><div className="progress"><i/><span>35% complete</span></div></Section></div>
-<Section n="12" title="CARDS" className="cards-section"><div className="card-grid">{[["Course Card","Next.js for Production","Build scalable, high-performance web applications with Next.js."],["Lesson Card (Video)","Data Fetching in Server Components","Learn how to fetch data on the server using async/await and Next.js best practices."],["Lesson Card (Lesson)","Data Fetching & Caching","Explore different data fetching methods in Next.js and how to cache and revalidate data for optimal performance."],["Resource Card","Caching and Revalidation Guide","Deep dive into Next.js caching strategies."]].map((r,i)=><article key={r[0]}><small>{r[0]}</small><div className="card">{i===0&&<b className="nx">N</b>}{i===1&&<span className="badge video">VIDEO</span>}{i===2&&<span className="badge lesson">LESSON</span>}{i===3&&<Icon name="file"/>}<strong>{r[1]}</strong><p>{r[2]}</p><small>{i===0?"▥ Intermediate　◷ 18h 24m　▣ 12 modules":i===3?"PDF　·　1.2 MB　　　　　　　　 ↗":"Lesson 5.1　·　12:45　 "}<b className="orange-text">{i===1?"◉ Watch from 12:45":i===2?"View lesson ↗":""}</b></small></div></article>)}</div></Section>
-<Section n="13" title="NAVIGATION" className="navigation"><div className="nav-bar"><Logo/><b>Courses</b><span>My Learning</span></div><div><small>Breadcrumbs</small><p>All Courses　›　 Next.js for Production　›　 Data Fetching & Caching</p></div><div><small>Pagination</small><p>‹　 <b className="current">1</b>　2　 3　…　 8　›</p></div></Section><Section n="14" title="PRINCIPLES" className="principles">{[["◉","Clarity First","Every element should communicate clearly."],["▦","Consistency","Use components and patterns consistently across the platform."],["◎","Focus & Calm","Remove noise and help learners focus on what matters."],["♿","Accessible","Design with accessibility and inclusivity in mind."]].map(x=><div key={x[1]}><span>{x[0]}</span><b>{x[1]}</b><small>{x[2]}</small></div>)}</Section></main>}
+const courses = [
+  {
+    title: "Next.js for Production",
+    description: "Build scalable, high-performance web applications with Next.js.",
+    level: "Intermediate",
+    duration: "18h 24m",
+    modules: "12 modules",
+    mark: "N",
+    markClass: "next-mark",
+  },
+  {
+    title: "Docker Essentials",
+    description: "Containerize applications and streamline your development workflow.",
+    level: "Beginner",
+    duration: "10h 12m",
+    modules: "8 modules",
+    mark: "🐳",
+    markClass: "docker-mark",
+  },
+  {
+    title: "TypeScript Deep Dive",
+    description: "Go beyond the basics and write safer, more expressive code.",
+    level: "Intermediate",
+    duration: "14h 36m",
+    modules: "10 modules",
+    mark: "TS",
+    markClass: "ts-mark",
+  },
+];
+
+function Icon({ name, className = "" }: { name: "bell" | "search" | "arrow" | "chart" | "clock" | "file" | "star"; className?: string }) {
+  const paths = {
+    bell: <><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/><path d="M10 21h4"/></>,
+    search: <><circle cx="10.8" cy="10.8" r="7.2"/><path d="m16 16 5 5"/></>,
+    arrow: <><path d="M4 12h15"/><path d="m13 5 7 7-7 7"/></>,
+    chart: <path d="M4 19v-5m5 5V9m5 10V5m5 14V2"/>,
+    clock: <><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></>,
+    file: <><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></>,
+    star: <path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-3-5.6 3 1.1-6.2L3 9.6l6.2-.9L12 3z"/>,
+  };
+
+  return <svg className={`icon ${className}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.65" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{paths[name]}</svg>;
+}
+
+function Brand() {
+  return (
+    <Link className="brand" href="/" aria-label="Vertex home">
+      <svg className="brand-mark" viewBox="0 0 36 38" aria-hidden="true"><path d="M2 3h32L19 35 2 3Z" fill="currentColor"/><path d="M14 9h10l-5 9-5-9Z" fill="white"/></svg>
+      <span>Vertex</span>
+    </Link>
+  );
+}
+
+export default function Home() {
+  return (
+    <main className="home-page">
+      <header className="site-header">
+        <div className="header-inner">
+          <Brand />
+          <nav className="main-nav" aria-label="Main navigation">
+            <a className="active" href="#courses">Courses</a>
+            <a href="#my-learning">My Learning</a>
+          </nav>
+          <div className="header-actions">
+            <button className="icon-button notification" aria-label="Notifications"><Icon name="bell" /></button>
+            <button className="avatar" aria-label="Your profile"><span>J</span></button>
+          </div>
+        </div>
+      </header>
+
+      <section className="hero" aria-labelledby="hero-heading">
+        <div className="hero-copy">
+          <span className="eyebrow">Intelligent learning</span>
+          <h1 id="hero-heading">Search your learning<br className="desktop-break" /> in plain English.</h1>
+          <p>Vertex understands what you want to learn and<br className="desktop-break" /> finds the exact lessons across all your courses.</p>
+          <a className="explore-button" href="#courses">Explore Courses <Icon name="arrow" /></a>
+        </div>
+        <label className="search-box">
+          <Icon name="search" />
+          <input type="search" placeholder="Ask anything about your learning..." aria-label="Ask anything about your learning" />
+          <kbd><span>⌘</span> K</kbd>
+        </label>
+      </section>
+
+      <section className="courses-section" id="courses" aria-labelledby="courses-heading">
+        <div className="courses-inner">
+          <div className="section-heading">
+            <h2 id="courses-heading">All Courses</h2>
+            <a href="#courses">View all courses <Icon name="arrow" /></a>
+          </div>
+          <div className="course-grid">
+            {courses.map((course) => (
+              <article className="course-card" key={course.title}>
+                <div className={`course-mark ${course.markClass}`} aria-hidden="true">{course.mark}</div>
+                <h3>{course.title}</h3>
+                <p className="course-description">{course.description}</p>
+                <div className="course-meta">
+                  <span><Icon name="chart" />{course.level}</span>
+                  <span><Icon name="clock" />{course.duration}</span>
+                  <span><Icon name="file" />{course.modules}</span>
+                </div>
+              </article>
+            ))}
+          </div>
+          <div className="weekly-note"><span className="note-rule"/><span className="note-star"><Icon name="star" /></span><p>New courses and lessons added every week.</p><span className="note-rule"/></div>
+          <div className="footer-art" aria-hidden="true"><i/><i/><i/><i/><i/><i/><i/><i/><i/><i/><i/><i/><i/><i/><i/></div>
+        </div>
+      </section>
+    </main>
+  );
+}
+import Link from "next/link";
