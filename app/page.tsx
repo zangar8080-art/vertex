@@ -1,3 +1,6 @@
+import { Show, SignInButton, SignUpButton, UserButton } from "@clerk/nextjs";
+import Link from "next/link";
+
 const courses = [
   {
     title: "Next.js for Production",
@@ -63,7 +66,19 @@ export default function Home() {
           </nav>
           <div className="header-actions">
             <button className="icon-button notification" aria-label="Notifications"><Icon name="bell" /></button>
-            <button className="avatar" aria-label="Your profile"><span>J</span></button>
+            <Show when="signed-out">
+              <div className="auth-actions">
+                <SignInButton mode="modal">
+                  <button className="auth-link">Sign in</button>
+                </SignInButton>
+                <SignUpButton mode="modal">
+                  <button className="auth-signup">Sign up</button>
+                </SignUpButton>
+              </div>
+            </Show>
+            <Show when="signed-in">
+              <UserButton />
+            </Show>
           </div>
         </div>
       </header>
@@ -109,4 +124,3 @@ export default function Home() {
     </main>
   );
 }
-import Link from "next/link";
